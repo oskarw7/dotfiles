@@ -1,0 +1,4 @@
+yabai -m config layout float
+
+# move mouse to focused window/display
+yabai -m config mouse_follows_focus on
