@@ -33,3 +33,8 @@ vim.opt.colorcolumn = ""
 vim.g.mapleader = " "
 
 vim.cmd('set termguicolors')
+
+vim.keymap.set("n", "<leader>aa", function()
+  require("alpha").start()
+end) 
+
