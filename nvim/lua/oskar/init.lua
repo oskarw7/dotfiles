@@ -1,4 +1,3 @@
-require("oskar.remap")
 require("oskar.set")
-require("oskar.packer")
+require("oskar.lazy")
 require("oskar.lsp")
