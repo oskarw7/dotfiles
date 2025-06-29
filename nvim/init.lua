@@ -1,2 +1,1 @@
-require("oskar.init")
-
+require("lua.init")

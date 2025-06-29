@@ -32,5 +32,4 @@ vim.opt.colorcolumn = ""
 
 vim.g.mapleader = " "
 
-
-
+vim.cmd('set termguicolors')

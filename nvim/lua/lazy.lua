@@ -21,4 +21,4 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "rr", vim.cmd.Ex)
 
 -- Setup lazy.nvim
-return require('lazy').setup('oskar.plugins')
+require("lazy").setup("plugins")
