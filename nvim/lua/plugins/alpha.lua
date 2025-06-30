@@ -1,29 +1,34 @@
 return {
-  'goolord/alpha-nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' }, -- optional, for icons
+  "goolord/alpha-nvim",
+  event = "VimEnter",
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
+    -- Set header
     dashboard.section.header.val = {
-      " ███╗   ██╗██╗   ██╗██╗███╗   ███╗",
-      " ████╗  ██║██║   ██║██║████╗ ████║",
-      " ██╔██╗ ██║██║   ██║██║██╔████╔██║",
-      " ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║",
-      " ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║",
-      " ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
+      "                                                     ",
+      "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+      "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+      "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+      "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+      "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+      "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+      "                                                     ",
     }
-
+    
+    -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("e", "  new file", ":ene <bar> startinsert <cr>"),
-      dashboard.button("f", "  find file", ":telescope find_files<cr>"),
-      dashboard.button("r", "  recent files", ":telescope oldfiles<cr>"),
-      dashboard.button("g", "  find text", ":telescope live_grep<cr>"),
-      dashboard.button("c", "  config", ":e $myvimrc<cr>"),
-      dashboard.button("q", "  quit", ":qa<cr>"),
+      dashboard.button("n", "  > New File", "<cmd>ene<CR>"),
+      dashboard.button("f", "󰱼  > Find File", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("g", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("q", "  > Quit NVIM", "<cmd>qa<CR>"),
     }
 
-    alpha.setup(dashboard.config)
-  end
-}
+    -- Send config to alpha
+    alpha.setup(dashboard.opts)
 
+    -- Disable folding on alpha buffer
+    vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+  end,
+}
