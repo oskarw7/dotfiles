@@ -38,3 +38,4 @@ vim.keymap.set("n", "<leader>aa", function()
   require("alpha").start()
 end) 
 
+vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>")

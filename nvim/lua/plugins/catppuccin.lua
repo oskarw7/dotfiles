@@ -12,9 +12,15 @@ return {
         native_lsp = {
           enabled = true,
         },
+        mason = true,
         cmp = true,
         telescope = true,
-        -- Add more integrations if needed
+        gitsigns = true,
+        alpha = true,
+        barbar = true,
+        harpoon = true,
+        neotree = true,
+        telescope = true,
       },
     })
     vim.cmd.colorscheme("catppuccin")
