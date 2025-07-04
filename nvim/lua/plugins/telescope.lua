@@ -10,7 +10,7 @@ return {
     -- Set your keymaps here
     vim.keymap.set('n', 'ff', builtin.find_files, {})
     vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>gp', function()
+    vim.keymap.set('n', '<leader>fg', function()
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
     end)
   end,
