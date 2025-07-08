@@ -18,6 +18,13 @@ return {
 
         local keymap = vim.keymap -- for conciseness
 
+        vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = {
+                only_current_line = false, -- set to true if you want virtual lines only under cursor
+            },
+        })
+
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -78,31 +85,32 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        mason_lspconfig.setup({handlers = { -- mason_lspconfig.setup_handlers doesn't exist but mason_lspconfig.setup({handlers = {}}) exists
-            -- default handler for installed servers
-            function(server_name)
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                })
-            end,
-            ["lua_ls"] = function()
-                -- configure lua server (with special settings)
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            -- make the language server recognize "vim" global
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            completion = {
-                                callSnippet = "Replace",
+        mason_lspconfig.setup({
+            handlers = { -- mason_lspconfig.setup_handlers doesn't exist but mason_lspconfig.setup({handlers = {}}) exists
+                -- default handler for installed servers
+                function(server_name)
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities,
+                    })
+                end,
+                ["lua_ls"] = function()
+                    -- configure lua server (with special settings)
+                    lspconfig["lua_ls"].setup({
+                        capabilities = capabilities,
+                        settings = {
+                            Lua = {
+                                -- make the language server recognize "vim" global
+                                diagnostics = {
+                                    globals = { "vim" },
+                                },
+                                completion = {
+                                    callSnippet = "Replace",
+                                },
                             },
                         },
-                    },
-                })
-            end,
-        }})
+                    })
+                end,
+            },
+        })
     end,
 }
-
