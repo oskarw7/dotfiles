@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>ch", ":nohl<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader>ch", ":nohl<CR>", { desc = "Clear search highlights", silent = true })
 
 -- Window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
