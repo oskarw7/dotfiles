@@ -103,6 +103,7 @@ return {
                             folder_closed = "",
                             folder_open = "",
                             folder_empty = "󰜌",
+---@diagnostic disable-next-line: unused-local
                             provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
                                 if node.type == "file" or node.type == "terminal" then
                                     local success, web_devicons = pcall(require, "nvim-web-devicons")
@@ -204,6 +205,7 @@ return {
                             ["z"] = "close_all_nodes",
                             --["Z"] = "expand_all_nodes",
                             --["Z"] = "expand_all_subnodes",
+---@diagnostic disable-next-line: duplicate-index
                             ["a"] = {
                                 "add",
                                 -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -212,6 +214,7 @@ return {
                                     show_path = "none", -- "none", "relative", "absolute"
                                 },
                             },
+---@diagnostic disable-next-line: duplicate-index
                             ["a"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
                             ["d"] = "delete",
                             ["r"] = "rename",

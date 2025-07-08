@@ -17,8 +17,10 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 
@@ -30,12 +32,4 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
-vim.g.mapleader = " "
-
-vim.cmd('set termguicolors')
-
-vim.keymap.set("n", "<leader>aa", function()
-  require("alpha").start()
-end) 
-
-vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>")
+vim.cmd("set termguicolors")

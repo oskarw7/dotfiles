@@ -1,3 +1,3 @@
 require("set")
-require("lsp")
+require("keymaps")
 require("colors")

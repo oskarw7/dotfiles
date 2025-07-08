@@ -1,0 +1,3 @@
+Change neotree to nvim-tree, then add dressing.nvim
+
+Add popup terminal

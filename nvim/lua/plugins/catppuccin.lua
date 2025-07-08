@@ -20,7 +20,6 @@ return {
         barbar = true,
         harpoon = true,
         neotree = true,
-        telescope = true,
       },
     })
     vim.cmd.colorscheme("catppuccin")
