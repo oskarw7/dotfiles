@@ -28,6 +28,9 @@ return {
         },
     },
     config = function(_, opts)
+        -- NOTE: Consider moving that to file which isn't lazy loaded
+        vim.deprecate = function() end
+
         require("noice").setup(opts)
 
         vim.keymap.set("n", "<leader>nd", function()

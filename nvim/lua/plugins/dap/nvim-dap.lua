@@ -14,7 +14,10 @@ return {
 
         -- setup mason-nvim-dap
         require("mason-nvim-dap").setup({
-            ensure_installed = { "codelldb" },
+            ensure_installed = {
+                "codelldb",
+                "python", -- mason installs debugpy
+            },
             automatic_installation = true,
             handlers = {
                 function(config)
@@ -24,6 +27,10 @@ return {
         })
 
         require("dapui").setup()
+        require("nvim-dap-virtual-text").setup({
+            enabled = true,
+            virt_text_pos = "eol",
+        })
 
         -- dapui setup
         dap.listeners.before.attach.dapui_config = function()
@@ -77,5 +84,25 @@ return {
             },
         }
         dap.configurations.cpp = dap.configurations.c
+        dap.configurations.rust = dap.configurations.c
+
+        -- DEBUGPY setup
+        dap.configurations.python = {
+            {
+                type = "python",
+                request = "launch",
+                name = "Launch file",
+                program = "${file}", -- current file
+                pythonPath = function()
+                    -- Use venv if available, fallback to system python
+                    local venv_path = os.getenv("VIRTUAL_ENV")
+                    if venv_path then
+                        return venv_path .. "/bin/python"
+                    else
+                        return "python3"
+                    end
+                end,
+            },
+        }
     end,
 }

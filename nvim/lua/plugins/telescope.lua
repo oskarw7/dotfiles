@@ -17,5 +17,7 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
         vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", {})
+
+        require("telescope").load_extension("noice")
     end,
 }

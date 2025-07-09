@@ -9,6 +9,7 @@ return {
                 "cpp",
                 "asm",
                 "bash",
+                "python",
                 "java",
                 "rust",
                 "lua",
