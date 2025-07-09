@@ -19,9 +19,19 @@ return {
         local keymap = vim.keymap -- for conciseness
 
         vim.diagnostic.config({
-            virtual_text = false,
-            virtual_lines = {
-                only_current_line = false, -- set to true if you want virtual lines only under cursor
+            virtual_text = {
+                spacing = 4, -- optional: adds space between text and line
+                severity = nil, -- show all severities
+                format = function(diagnostic)
+                    return diagnostic.message
+                end,
+            },
+            virtual_lines = false,
+            signs = true,
+            underline = true,
+            update_in_insert = true,
+            float = {
+                border = "rounded",
             },
         })
 
