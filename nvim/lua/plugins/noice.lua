@@ -31,6 +31,12 @@ return {
         -- NOTE: Consider moving that to file which isn't lazy loaded
         vim.deprecate = function() end
 
+        local notify = require("notify")
+        notify.setup({
+            background_colour = "#24273a", -- lub dowolny inny hex kolor
+        })
+        vim.notify = notify
+
         require("noice").setup(opts)
 
         vim.keymap.set("n", "<leader>nd", function()
