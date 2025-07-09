@@ -32,4 +32,8 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
+vim.opt.cursorline = true
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#82aaff", bold = true })
+
 vim.cmd("set termguicolors")
