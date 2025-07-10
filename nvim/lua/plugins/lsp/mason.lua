@@ -40,7 +40,7 @@ return {
                 "prettier", -- Web
                 "stylua", -- Lua
                 "isort",
-                "black",
+                -- "black",
                 "pylint", -- Python
                 "eslint_d", -- JS
                 "clang-format", -- C, C++
