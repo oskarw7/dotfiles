@@ -120,6 +120,19 @@ return {
                         },
                     })
                 end,
+                ["rust_analyzer"] = function()
+                    lspconfig.rust_analyzer.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            ["rust-analyzer"] = {
+                                diagnostics = {
+                                    enable = true,
+                                    onSave = false,
+                                },
+                            },
+                        },
+                    })
+                end,
             },
         })
     end,

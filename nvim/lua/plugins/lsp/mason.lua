@@ -29,7 +29,7 @@ return {
                 "pyright",
                 "clangd",
                 "omnisharp",
-                "rust_analyzer",
+                -- "rust_analyzer", check notes.md
                 "jdtls",
             },
         })
