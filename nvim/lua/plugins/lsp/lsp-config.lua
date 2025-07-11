@@ -81,6 +81,11 @@ return {
 
                 opts.desc = "Restart LSP"
                 keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+                local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+                end
             end,
         })
 
@@ -128,6 +133,11 @@ return {
                                 diagnostics = {
                                     enable = true,
                                     onSave = false,
+                                },
+                                inlayHints = {
+                                    typeHints = true,
+                                    chainingHints = true,
+                                    parameterHints = true,
                                 },
                             },
                         },
