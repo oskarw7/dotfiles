@@ -19,6 +19,7 @@ return {
         local keymap = vim.keymap -- for conciseness
 
         vim.diagnostic.config({
+            --[[
             virtual_text = {
                 spacing = 4, -- optional: adds space between text and line
                 severity = nil, -- show all severities
@@ -26,6 +27,8 @@ return {
                     return diagnostic.message
                 end,
             },
+            ]]
+            virtual_text = false,
             virtual_lines = false,
             signs = true,
             underline = true,
@@ -65,10 +68,13 @@ return {
                 keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
                 opts.desc = "Show buffer diagnostics"
-                keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+                keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show diagnostics for file
 
                 opts.desc = "Show line diagnostics"
-                keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts) -- show diagnostics for line
+                local show_diag = function()
+                    vim.diagnostic.open_float(nil, { focusable = false, scope = "line" })
+                end
+                vim.keymap.set({ "n", "i", "v" }, "<A-d>", show_diag, { desc = "Show diagnostics float" }) -- show diagnostics for line
 
                 opts.desc = "Go to previous diagnostic"
                 keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
@@ -145,5 +151,27 @@ return {
                 end,
             },
         })
+
+        -- Custom colors for virtual text
+        --vim.cmd([[
+        --highlight DiagnosticVirtualTextError guifg=#808080 guibg=#363a4f
+        --highlight DiagnosticVirtualTextWarn  guifg=#808080 guibg=#363a4f
+        --highlight DiagnosticVirtualTextInfo  guifg=#808080 guibg=#363a4f
+        --highlight DiagnosticVirtualTextHint  guifg=#808080 guibg=#363a4f
+        --]])
+
+        --[[
+        -- Show diagnostics on hover (after delay)
+        vim.o.updatetime = 0 -- milliseconds before CursorHold triggers
+
+        vim.api.nvim_create_autocmd("CursorHold", {
+            pattern = "*",
+            callback = function()
+                if not vim.fn.mode():match("i") then -- avoid showing in insert mode
+                    vim.diagnostic.open_float(nil, { focusable = false, border = "rounded", scope = "cursor" })
+                end
+            end,
+        })
+        ]]
     end,
 }
