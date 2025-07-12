@@ -22,11 +22,12 @@ return {
                 java = { "google_java_format" },
                 rust = { "rustfmt" },
             },
-            format_on_save = {
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            },
+            -- Commented out due to auto-save activity
+            -- format_on_save = {
+            --     lsp_fallback = true,
+            --     async = false,
+            --     timeout_ms = 1000,
+            -- },
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>fm", function()
