@@ -26,7 +26,7 @@ return {
                 "cssls",
                 "tailwindcss",
                 "lua_ls",
-                "pyright",
+                -- "pyright", check notes.md
                 "clangd",
                 "omnisharp",
                 -- "rust_analyzer", check notes.md
@@ -41,7 +41,7 @@ return {
                 "stylua", -- Lua
                 "isort",
                 -- "black",
-                "pylint", -- Python
+                -- "pylint", -- Python
                 "eslint_d", -- JS
                 "clang-format", -- C, C++
                 "rustfmt", -- Rust

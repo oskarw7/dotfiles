@@ -152,6 +152,35 @@ return {
             },
         })
 
+        local function get_pyright_cmd()
+            local cwd = vim.fn.getcwd()
+
+            local uv_path = cwd .. "/.venv/bin/pyright-langserver"
+            if vim.fn.executable(uv_path) == 1 then
+                return { uv_path, "--stdio" }
+            end
+
+            local venv_path = cwd .. "/venv/bin/pyright-langserver"
+            if vim.fn.executable(venv_path) == 1 then
+                return { venv_path, "--stdio" }
+            end
+
+            return { "pyright-langserver", "--stdio" }
+        end
+
+        lspconfig.pyright.setup({
+            capabilities = capabilities,
+            cmd = get_pyright_cmd(),
+            settings = {
+                python = {
+                    analysis = {
+                        reportPossiblyUnboundVariable = "none",
+                        typeCheckingMode = "basic",
+                    },
+                },
+            },
+        })
+
         -- Custom colors for virtual text
         --vim.cmd([[
         --highlight DiagnosticVirtualTextError guifg=#808080 guibg=#363a4f
