@@ -21,6 +21,7 @@ return {
                 cpp = { "clang_format" },
                 java = { "google_java_format" },
                 rust = { "rustfmt" },
+                go = { "gofumpt" },
             },
             -- Commented out due to auto-save activity
             -- format_on_save = {

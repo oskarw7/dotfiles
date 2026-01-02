@@ -6,6 +6,7 @@ return {
         "nvim-neotest/nvim-nio",
         "williamboman/mason.nvim",
         "jay-babu/mason-nvim-dap.nvim",
+        "leoluz/nvim-dap-go",
     },
 
     config = function()
@@ -17,6 +18,7 @@ return {
             ensure_installed = {
                 "codelldb",
                 "python", -- mason installs debugpy
+                "delve",
             },
             automatic_installation = true,
             handlers = {
@@ -26,6 +28,7 @@ return {
             },
         })
 
+        require("dap-go").setup()
         require("dapui").setup()
         require("nvim-dap-virtual-text").setup({
             enabled = true,
@@ -49,25 +52,43 @@ return {
         -- dap setup
         vim.keymap.set("n", "<F5>", function()
             dap.continue()
-        end)
+        end, { desc = "Debug: Start / Continue" })
+
         vim.keymap.set("n", "<F6>", function()
-            dap.terminate()
-        end)
-        vim.keymap.set("n", "<F10>", function()
-            dap.step_over()
-        end)
-        vim.keymap.set("n", "<F11>", function()
             dap.step_into()
-        end)
-        vim.keymap.set("n", "<F12>", function()
+        end, { desc = "Debug: Step Into" })
+
+        vim.keymap.set("n", "<F7>", function()
+            dap.step_over()
+        end, { desc = "Debug: Step Over" })
+
+        vim.keymap.set("n", "<F8>", function()
             dap.step_out()
-        end)
+        end, { desc = "Debug: Step Out" })
+
+        vim.keymap.set("n", "<F9>", function()
+            dap.step_back()
+        end, { desc = "Debug: Step Back" })
+
+        vim.keymap.set("n", "<F10>", function()
+            dap.restart()
+        end, { desc = "Debug: Restart" })
+
+        vim.keymap.set("n", "<F11>", function()
+            dap.terminate()
+        end, { desc = "Debug: Terminate" })
+
+        vim.keymap.set("n", "<F12>", function()
+            dap.disconnect()
+        end, { desc = "Debug: Disconnect" })
+
         vim.keymap.set("n", "<Leader>db", function()
             dap.toggle_breakpoint()
-        end)
+        end, { desc = "Debug: Toggle Breakpoint" })
+
         vim.keymap.set("n", "<Leader>dB", function()
             dap.set_breakpoint()
-        end)
+        end, { desc = "Debug: Set Breakpoint (Log/Condition)" })
 
         -- LLDB setup
         dap.configurations.c = {

@@ -3,13 +3,9 @@ return {
     version = "*",
     config = function()
         require("toggleterm").setup({
-            -- ZMIANA 1: 'horizontal' sprawia, że terminal wysuwa się z dołu
             direction = "horizontal",
-            
-            -- ZMIANA 2: Rozmiar panelu (liczba linii wysokości)
-            size = 15, 
-
-            open_mapping = [[<C-\>]],
+            size = 15,
+            open_mapping = [[<C-t>]],
             hide_numbers = true,
             shade_filetypes = {},
             shade_terminals = true,
@@ -24,7 +20,6 @@ return {
         function _G.set_terminal_keymaps()
             local opts = {buffer = 0}
             vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-            vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
             vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
             vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
             vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)

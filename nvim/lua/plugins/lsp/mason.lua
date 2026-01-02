@@ -31,6 +31,7 @@ return {
                 "omnisharp",
                 -- "rust_analyzer", check notes.md
                 "jdtls",
+                "gopls",
             },
         })
 
@@ -49,6 +50,8 @@ return {
                 "cspell", -- C, C++
                 "checkstyle", -- Java
                 "bacon", -- Rust
+                "delve", -- Go
+                "gofumpt", -- Go
             },
         })
     end,
