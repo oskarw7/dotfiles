@@ -1,3 +1,7 @@
+-- Switch to normal mode
+vim.keymap.set("i", "jj", "<ESC>", { desc = "Switch to normal mode" })
+
+-- Clear search highlights
 vim.keymap.set("n", "<leader>ch", ":nohl<CR>", { desc = "Clear search highlights", silent = true })
 
 -- Window management
@@ -13,10 +17,10 @@ vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab"
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Quit nvim
-vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit nvim" })
 
 -- Force quit nvim
-vim.keymap.set("n", "<leader>qf", "<cmd>qa!<CR>")
+vim.keymap.set("n", "<leader>qf", "<cmd>qa!<CR>", { desc = "Force quit nvim" })
 
 -- Go back to greeter
 vim.keymap.set("n", "<leader>aa", function()
